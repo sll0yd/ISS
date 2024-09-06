@@ -25,20 +25,19 @@ function updateISSPosition() {
 
       // Créer un marker avec la position de l'ISS
       marker = L.marker([latitude, longitude]).addTo(map);
-      marker.bindPopup(`ISS Position: ${latitude}, ${longitude}`).openPopup();
-      infoElement.textContent = `Updated: ${timestamp.toLocaleString()}`;
-    })
-    .catch((error) => {
-      infoElement.textContent = `Error: ${error.message}`;
+      marker.bindPopup(`🚀 ISS Position 🧭`).openPopup();
     });
 }
 
 let marker; // Variable pour stocker le marker
 
+//Appel de la fonction
 updateISSPosition();
+
+// Appel de la fonction toutes les 5 secondes
 setInterval(updateISSPosition, 5000);
 
-// Exercice O'code pour l'heure
+// Exercice O'code pour afficher l'heure
 setInterval(setTime, 1000);
 
 function setTime() {
@@ -53,6 +52,6 @@ function getTime() {
     month: "long",
     day: "numeric",
   });
-  const time = now.toTimeString();
-  return `${date} / ${time} `;
+  const time = now.toTimeString().substring(0, 18);
+  return ` ${date} ⏱️ ${time} `;
 }

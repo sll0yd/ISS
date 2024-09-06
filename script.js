@@ -16,7 +16,6 @@ function updateISSPosition() {
     .then((data) => {
       const latitude = data.latitude;
       const longitude = data.longitude;
-      const timestamp = new Date(data.timestamp * 1000);
 
       // enleve les precedents marker
       if (marker) {
@@ -36,6 +35,9 @@ updateISSPosition();
 
 // Appel de la fonction toutes les 5 secondes
 setInterval(updateISSPosition, 5000);
+
+
+
 
 // Exercice O'code pour afficher l'heure
 setInterval(setTime, 1000);

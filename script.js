@@ -1,7 +1,5 @@
-
 // Récupérer l'élement HTML
 const mapElement = document.getElementById("map");
-
 
 // initialiser la carte avec un zoom de 2
 const map = L.map("map").setView([0, 0], 2);
@@ -20,10 +18,14 @@ function updateISSPosition() {
       const longitude = data.longitude;
       const timestamp = new Date(data.timestamp * 1000);
 
-      // Create a new marker and add it to the map
+      // enleve les precedents marker
+      if (marker) {
+        map.removeLayer(marker);
+      }
+
+      // Créer un marker avec la position de l'ISS
       marker = L.marker([latitude, longitude]).addTo(map);
       marker.bindPopup(`ISS Position: ${latitude}, ${longitude}`).openPopup();
-
       infoElement.textContent = `Updated: ${timestamp.toLocaleString()}`;
     })
     .catch((error) => {
@@ -35,11 +37,6 @@ let marker; // Variable pour stocker le marker
 
 updateISSPosition();
 setInterval(updateISSPosition, 5000);
-
-
-
-
-
 
 // Exercice O'code pour l'heure
 setInterval(setTime, 1000);
